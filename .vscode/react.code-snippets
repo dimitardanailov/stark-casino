@@ -1,0 +1,102 @@
+{
+  "Custom React": {
+    "prefix": "casinoreactfc",
+    "body": [
+      "'use client'",
+      "",
+      "import {FC} from 'react'",
+      "",
+      "export interface Props {",
+      "  component: string",
+      "}",
+      "",
+      "const $0: FC<Props> = ({component}) => {",
+      "  return (",
+      "    <>",
+      "      {component}",
+      "    </>",
+      " );",
+      "}",
+      "",
+      "export default $0"
+    ]
+  },
+  "Custom SEO page details - seo.ts": {
+    "prefix": "casinoseo",
+    "body": [
+      "import {InternalMetadata} from '@/seo/metadata'",
+      "",
+      "",
+      "const title = '$0'",
+      "const description = '$1'",
+      "const canonical = '$2'",
+      "",
+      "const props: InternalMetadata = {",
+      "  title,",
+      "  description,",
+      "  canonical,",
+      "}",
+      "",
+      "export default props",
+      "",
+      "export {title}"
+    ]
+  },
+  "Custom layout - layout.tsx": {
+    "prefix": "casinolayout",
+    "body": [
+      "import layout from '@/components/NextjsLayout'",
+      "import generateMetadata from '@/seo/metadata'",
+      "",
+      "import props from './seo'",
+      "",
+      "export const metadata = generateMetadata(props)",
+      "",
+      "export default layout"
+    ]
+  },
+  "Custom page - page.tsx": {
+    "prefix": "casinopage",
+    "body": [
+      "'use client'",
+      "",
+      "import type {NextPage} from 'next'",
+      "",
+      "import Content from './Content'",
+      "",
+      "import Layout from '@/components/MainLayout'",
+      "import LeftDrawer from '@/components/Drawers/LeftDrawer'",
+      "import {menuItems} from '@/menu'",
+      "",
+      "import {drawerWidth} from '@/config/layout'",
+      "import {LayoutProvider} from '@/providers'",
+      "",
+      "import {title} from './seo'",
+      "",
+      "const Title = () => {",
+      "  return <h1>{title}</h1>",
+      "}",
+      "",
+      "const PageContent = () => {",
+      "  return (",
+      "    <LayoutProvider>",
+      "      <Content />",
+      "    </LayoutProvider>",
+      "  )",
+      "}",
+      "",
+      "const Page: NextPage = () => {",
+      "  return (",
+      "    <Layout",
+      "      PageContent={PageContent}",
+      "      HeaderTitle={Title}",
+      "      drawerWidth={drawerWidth}",
+      "      LeftDrawer={<LeftDrawer items={menuItems} />}",
+      "    />",
+      "  )",
+      "}",
+      "",
+      "export default Page"
+    ]
+  }
+}
