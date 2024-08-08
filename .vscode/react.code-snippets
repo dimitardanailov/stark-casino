@@ -1,5 +1,23 @@
 {
-  "Custom React": {
+  "Custom React Component without params": {
+    "prefix": "casinoreactsimple",
+    "body": [
+      "'use client'",
+      "",
+      "import {FC} from 'react'",
+      "",
+      "const $0: FC = () => {",
+      "  return (",
+      "    <>",
+      "      component",
+      "    </>",
+      " );",
+      "}",
+      "",
+      "export default $0"
+    ]
+  },
+  "Custom React Component with params": {
     "prefix": "casinoreactfc",
     "body": [
       "'use client'",
