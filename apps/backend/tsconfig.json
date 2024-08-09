@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "target": "es2022",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "incremental": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "#config": ["./src/config/index.ts"],
+      "#helpers": ["./src/helpers/index.ts"],
+      "#contants": ["./src/contants/index.ts"],
+      "#mongoose": ["./src/mongoose/index.ts"],
+      "#mongoose/helpers": ["./src/mongoose/helpers/index.ts"],
+      "#mocks": ["./src/tests/mocks/index.ts"]
+    }
+  },
+  "exclude": ["./node_modules"]
+}
