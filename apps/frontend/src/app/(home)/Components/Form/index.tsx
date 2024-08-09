@@ -7,7 +7,11 @@ import { joiResolver } from "@hookform/resolvers/joi";
 
 import schema from "./schema";
 
+import API, { Route } from "@/config/api/routes";
+
 const Form: FC = () => {
+  const route = API.users.createUser;
+
   const { register, handleSubmit } = useForm({
     resolver: joiResolver(schema),
   });
