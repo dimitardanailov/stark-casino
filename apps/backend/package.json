@@ -6,6 +6,7 @@
     "build": "npx tsc",
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
+    "docker:setup": "docker-compose -f ./docker-compose.yml up --build -d",
     "test:integration": "jest --config=./src/tests/config/integration.ts"
   },
   "author": "",

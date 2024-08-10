@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  mongo:
+    container_name: casino_stark_mongodb
+    image: mongo:6.0
+    hostname: mongo
+    ports:
+      - 27017:27017
+    entrypoint:
+      [
+        '/usr/bin/mongod',
+        '--bind_ip_all',
+        '--replSet',
+        'rs0',
+        '--setParameter',
+        'transactionLifetimeLimitSeconds=60',
+      ]
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ['CMD', 'mongo', '--eval', "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  mongo_data:
+    driver: local
