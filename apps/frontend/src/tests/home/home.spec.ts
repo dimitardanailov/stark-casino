@@ -27,4 +27,23 @@ test.describe("Homepage test suite", () => {
 
     await expect(component).toBeVisible();
   });
+
+  caseName = "form elements are visible";
+  test(generateTestCaseName(testNamePrefix, caseName), async () => {
+    const firstNameTextField = await page.getByTestId(
+      testingIdentifiers.firstNameTextField
+    );
+
+    const lastNameTextField = await page.getByTestId(
+      testingIdentifiers.lastNameTextField
+    );
+
+    const emailTextField = await page.getByTestId(
+      testingIdentifiers.emailTextField
+    );
+
+    await expect(firstNameTextField).toBeVisible();
+    await expect(lastNameTextField).toBeVisible();
+    await expect(emailTextField).toBeVisible();
+  });
 });

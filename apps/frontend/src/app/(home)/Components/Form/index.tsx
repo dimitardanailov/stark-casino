@@ -88,6 +88,7 @@ const Form: FC = () => {
             label="First Name"
             {...register("firstName")}
             error={!!errors.firstName}
+            data-testid={testingIdentifiers.firstNameTextField}
           />
         </Grid>
         <Grid item xs={12}>
@@ -96,6 +97,7 @@ const Form: FC = () => {
             label="Last Name"
             {...register("lastName")}
             error={!!errors.lastName}
+            data-testid={testingIdentifiers.lastNameTextField}
           />
         </Grid>
         <Grid item xs={12}>
@@ -105,6 +107,7 @@ const Form: FC = () => {
             type="email"
             {...register("email")}
             error={!!errors.email}
+            data-testid={testingIdentifiers.emailTextField}
           />
         </Grid>
         {errorType === "Conflict" && <ConflictError />}
@@ -113,7 +116,13 @@ const Form: FC = () => {
         {errorType === "NetworkError" && <NetworkError />}
         {errorType === "UnexpectedError" && <UnexpectedError />}
         <Grid item xs={12}>
-          <Button fullWidth variant="contained" color="primary" type="submit">
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            type="submit"
+            data-testid={testingIdentifiers.submitButton}
+          >
             Submit
           </Button>
         </Grid>
