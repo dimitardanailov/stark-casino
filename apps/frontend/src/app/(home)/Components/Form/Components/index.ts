@@ -3,6 +3,7 @@ import ConflictError from "./ConflictError";
 import NetworkError from "./NetworkError";
 import ServerError from "./ServerError";
 import UnexpectedError from "./UnexpectedError";
+import UserInfo from "./UserInfo";
 
 export {
   BadRequest,
@@ -10,4 +11,5 @@ export {
   NetworkError,
   ServerError,
   UnexpectedError,
+  UserInfo,
 };

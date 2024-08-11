@@ -13,6 +13,7 @@ import Grid from "@mui/material/Grid";
 import { createUser } from "@/services/userService";
 
 import ErrorType from "@/types/ErrorType";
+import User from "@/types/User";
 
 import {
   BadRequest,
@@ -20,12 +21,14 @@ import {
   NetworkError,
   ServerError,
   UnexpectedError,
+  UserInfo,
 } from "./Components";
 
 import schema from "./schema";
 
 const Form: FC = () => {
   const [errorType, setErrorType] = useState<ErrorType | null>(null);
+  const [createdUser, setCreatedUser] = useState<User | null>(null);
 
   const {
     register,
@@ -36,8 +39,16 @@ const Form: FC = () => {
   });
 
   const onSubmit = async (data: any) => {
+    setCreatedUser(null);
+
     try {
-      const user = await createUser(data);
+      const response = await createUser(data);
+      const user: User = response.user as User;
+
+      // Set the created user to state
+      setCreatedUser(user);
+
+      // Clear any previous errors
       setErrorType(null);
     } catch (error) {
       if (error instanceof Response) {
@@ -104,6 +115,9 @@ const Form: FC = () => {
           </Button>
         </Grid>
       </Grid>
+
+      {/* Success Message and User Details */}
+      {createdUser && <UserInfo user={createdUser}></UserInfo>}
     </Box>
   );
 };
