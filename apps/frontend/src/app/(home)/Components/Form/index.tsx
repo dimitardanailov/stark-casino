@@ -12,6 +12,8 @@ import Grid from "@mui/material/Grid";
 
 import { createUser } from "@/services/userService";
 
+import { testingIdentifiers } from "../../db";
+
 import ErrorType from "@/types/ErrorType";
 import User from "@/types/User";
 
@@ -77,6 +79,7 @@ const Form: FC = () => {
       onSubmit={handleSubmit(onSubmit)}
       noValidate
       className="mt-4"
+      data-testid={testingIdentifiers.formComponent}
     >
       <Grid container spacing={2}>
         <Grid item xs={12}>
