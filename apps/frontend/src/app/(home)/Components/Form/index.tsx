@@ -1,6 +1,6 @@
 "use client";
 
-import { FC } from "react";
+import { FC, useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
@@ -10,11 +10,23 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 
-import API, { Route } from "@/config/api/routes";
+import { createUser } from "@/services/userService";
+
+import ErrorType from "@/types/ErrorType";
+
+import {
+  BadRequest,
+  ConflictError,
+  NetworkError,
+  ServerError,
+  UnexpectedError,
+} from "./Components";
 
 import schema from "./schema";
 
 const Form: FC = () => {
+  const [errorType, setErrorType] = useState<ErrorType | null>(null);
+
   const {
     register,
     handleSubmit,
@@ -25,48 +37,36 @@ const Form: FC = () => {
 
   const onSubmit = async (data: any) => {
     try {
-      const route: Route = API.users.createUser;
-
-      const input = `${route.DOMAIN}${route.URI}`;
-      const body = JSON.stringify(data);
-
-      const response = await fetch(input, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body,
-      });
-
-      // Check if the response status is not OK
-      if (!response.ok) {
-        // You can handle different status codes here
-        switch (response.status) {
+      const user = await createUser(data);
+      setErrorType(null);
+    } catch (error) {
+      if (error instanceof Response) {
+        switch (error.status) {
           case 400:
-            console.log("response code: 400");
+            setErrorType("BadRequest");
             break;
           case 409:
-            console.log("response code: 409");
+            setErrorType("Conflict");
             break;
           case 500:
-            console.log("response code: 409");
+            setErrorType("ServerError");
             break;
           default:
-            throw new Error(`Unexpected error: ${response.status}`);
+            setErrorType("UnexpectedError");
         }
+      } else {
+        setErrorType("NetworkError");
       }
-
-      const result = await response.json();
-
-      console.log("Success:", result);
-    } catch (error) {
-      console.error("Error:", error);
     }
   };
 
   return (
-    <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
+    <Box
+      component="form"
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate
+      className="mt-4"
+    >
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <TextField
@@ -93,6 +93,11 @@ const Form: FC = () => {
             error={!!errors.email}
           />
         </Grid>
+        {errorType === "Conflict" && <ConflictError />}
+        {errorType === "BadRequest" && <BadRequest />}
+        {errorType === "ServerError" && <ServerError />}
+        {errorType === "NetworkError" && <NetworkError />}
+        {errorType === "UnexpectedError" && <UnexpectedError />}
         <Grid item xs={12}>
           <Button fullWidth variant="contained" color="primary" type="submit">
             Submit
