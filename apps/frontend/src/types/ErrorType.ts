@@ -5,3 +5,5 @@ type ErrorType =
   | "ServerError" // The backend returned a 500 error (internal server error)
   | "NetworkError" // Network issues (e.g., cannot reach the server)
   | "UnexpectedError"; // Any other unexpected errors
+
+export default ErrorType;
