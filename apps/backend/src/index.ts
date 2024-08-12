@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 
 import app from './app'
-import mongoUri from './mongo/config'
+import {mongoUri} from './mongo/config'
 
 dotenv.config()
 

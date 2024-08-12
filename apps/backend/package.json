@@ -6,6 +6,7 @@
     "build": "npx tsc",
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
+    "dev:e2e": "nodemon src/e2e.server.ts",
     "docker:setup": "docker-compose -p backend-stark-casino -f ./docker-compose.yml up --build -d",
     "test:integration": "jest --config=./src/tests/config/integration.ts"
   },
