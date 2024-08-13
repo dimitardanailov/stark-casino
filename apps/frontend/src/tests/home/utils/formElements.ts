@@ -2,12 +2,7 @@ import { Page, Locator } from "@playwright/test";
 
 import { testingIdentifiers } from "@/app/(home)/db";
 
-type Elements = {
-  firstNameTextField: Locator;
-  lastNameTextField: Locator;
-  emailTextField: Locator;
-  submitButton: Locator;
-};
+import Elements from "./types/Elements";
 
 async function formElements(page: Page): Promise<Elements> {
   const firstNameTextField = await page.getByTestId(

@@ -8,6 +8,7 @@ import { testNamePrefix } from "./db/index";
 import generateTestCaseName from "../shared/generateTestCaseName";
 
 import formElements from "./utils/formElements";
+import fillFormData from "./utils/fillFormData";
 
 import uniqueUser from "./db/uniqueUser";
 
@@ -58,18 +59,11 @@ test.describe("Homepage test suite", () => {
 
   caseName = "add a new user";
   test(generateTestCaseName(testNamePrefix, caseName), async () => {
-    const {
-      firstNameTextField,
-      lastNameTextField,
-      emailTextField,
-      submitButton,
-    } = await formElements(page);
+    const elements = await formElements(page);
 
-    await firstNameTextField.locator("input").fill(uniqueUser.firstName);
-    await lastNameTextField.locator("input").fill(uniqueUser.lastName);
-    await emailTextField.locator("input").fill(uniqueUser.email);
+    await fillFormData(elements, uniqueUser);
 
-    await submitButton.click();
+    await elements.submitButton.click();
 
     const alertBox = await page.getByTestId(testingIdentifiers.formAlertBox);
     await expect(alertBox).toBeVisible();
