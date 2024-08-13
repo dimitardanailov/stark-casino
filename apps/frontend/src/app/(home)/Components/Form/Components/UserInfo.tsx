@@ -11,6 +11,8 @@ import Stack from "@mui/material/Stack";
 
 import User from "@/types/User";
 
+import { testingIdentifiers } from "../../../db";
+
 export interface Props {
   user: User;
 }
@@ -18,7 +20,11 @@ export interface Props {
 const UserInfo: FC<Props> = ({ user }) => {
   return (
     <>
-      <Alert severity="success" className="mt-4">
+      <Alert
+        severity="success"
+        className="mt-4"
+        data-testid={testingIdentifiers.formAlertBox}
+      >
         User successfully created!
       </Alert>
 
