@@ -20,18 +20,22 @@ This project is a "Coming Soon" landing page for a casino, featuring a hero imag
 /casino-stark-app
 │
 ├── /apps/frontend
-│   ├── /public
-│   ├── /src
-│   ├── .eslintrc.json
-│   ├── next.config.js
-│   ├── package.json
-│   ├── tsconfig.json
+│   ├── /commands           # Shell scripts for tasks like testing
+│   ├── /node_modules       # Frontend dependencies
+│   ├── /public             # Static assets like images
+│   ├── /src                # Source code for the frontend
+│   ├── .eslintrc.json      # ESLint configuration for code quality
+│   ├── next.config.js      # Next.js configuration
+│   ├── package.json        # Frontend-specific dependencies and scripts
+│   ├── tsconfig.json       # TypeScript configuration for frontend
 │
 └── /apps/backend
-    ├── /src
-    ├── docker-compose.yml
-    ├── package.json
-    ├── tsconfig.json
+    ├── /commands           # Shell scripts for tasks like testing
+    ├── /node_modules       # Backend dependencies
+    ├── /src                # Source code for the backend
+    ├── docker-compose.yml  # Docker configuration for backend services
+    ├── package.json        # Backend-specific dependencies and scripts
+    ├── tsconfig.json       # TypeScript configuration for backend
 ```
 
 #### Front-end
@@ -107,12 +111,14 @@ Once both the front-end and back-end servers are running, visit http://localhost
 - `npm run build`: Builds the application for production;
 - `npm run start`: Starts the production server;
 - `npm run lint`: Runs ESLint to check for code quality issues;
+- `npm run test:e2e`: Runs end-to-end tests using Playwright;
 
 #### Back-End Scripts
 
 - `npm run build`: Compiles TypeScript to JavaScript;
 - `npm run start`: Starts the server in production mode;
 - `npm run dev`: Starts the server in development mode with hot-reloading;
+- `npm run dev:e2e`: Starts the back-end server for end-to-end testing;
 - `npm run docker:setup`: Sets up Docker containers for the back-end services;
 - `npm run test:integration`: Runs integration tests;
 
@@ -123,7 +129,7 @@ Once both the front-end and back-end servers are running, visit http://localhost
 End-to-end tests are set up using Playwright. Run tests with:
 
 ```bash
-npm run test
+npm run test:e2e
 ```
 
 #### Back-End
