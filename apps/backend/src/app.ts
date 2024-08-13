@@ -8,7 +8,11 @@ const app: Express = express()
 
 const corsOptions = {
   // Replace with the URL of your frontend application
-  origin: 'http://localhost:3000',
+  origin: [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1',
+  ],
 
   // Allow specific HTTP methods
   methods: 'GET,POST,PUT,DELETE',
