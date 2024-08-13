@@ -6,6 +6,7 @@ type Identifiers = {
   emailTextField: string;
   submitButton: string;
   formAlertBox: string;
+  errorUserExists: string;
 };
 
 const testingIdentifiers: Identifiers = {
@@ -16,6 +17,7 @@ const testingIdentifiers: Identifiers = {
   emailTextField: "home-page-form-textfield-email",
   submitButton: "home-page-form-submit",
   formAlertBox: "home-page-alert-box",
+  errorUserExists: "home-page-errors-user-exists",
 };
 
 export { testingIdentifiers };

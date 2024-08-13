@@ -10,7 +10,7 @@ import generateTestCaseName from "../shared/generateTestCaseName";
 import formElements from "./utils/formElements";
 import fillFormData from "./utils/fillFormData";
 
-import uniqueUser from "./db/uniqueUser";
+import user from "./db/user";
 
 test.describe("Homepage test suite", () => {
   let page: Page;
@@ -61,7 +61,7 @@ test.describe("Homepage test suite", () => {
   test(generateTestCaseName(testNamePrefix, caseName), async () => {
     const elements = await formElements(page);
 
-    await fillFormData(elements, uniqueUser);
+    await fillFormData(elements, user);
 
     await elements.submitButton.click();
 
@@ -72,5 +72,20 @@ test.describe("Homepage test suite", () => {
     expect(alertBoxScreenshot).toMatchSnapshot(
       "homepage-alert-box-success.png"
     );
+  });
+
+  caseName = "check if db.user is already added";
+  test(generateTestCaseName(testNamePrefix, caseName), async () => {
+    const elements = await formElements(page);
+
+    await fillFormData(elements, user);
+
+    await elements.submitButton.click();
+
+    const screenshot = await page.screenshot();
+    expect(screenshot).toMatchSnapshot("homepage-error-user-exists.png");
+
+    const alertBox = await page.getByTestId(testingIdentifiers.formAlertBox);
+    await expect(alertBox).toBeHidden();
   });
 });
